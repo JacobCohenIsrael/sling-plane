@@ -323,6 +323,12 @@ MonoBehaviour:
     SystemName: 
     StartDisabled: 0
     Children: []
+  - SystemType:
+      AssemblyQualifiedName: Quantum.Systems.MovementSystem, Quantum.Simulation,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    SystemName: 
+    StartDisabled: 0
+    Children: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +364,7 @@ MonoBehaviour:
     Guid:
       Value: 1812255575176627103
   Restitution:
-    RawValue: 0
+    RawValue: 32768
   RestitutionCombineFunction: 3
   FrictionStatic:
     RawValue: 39322
