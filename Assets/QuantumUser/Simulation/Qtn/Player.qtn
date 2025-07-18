@@ -1,3 +1,8 @@
 component PlayerLink {
     PlayerRef Player;
 }
+
+input {
+    FPVector3 Rotation;
+    button Sling;
+}

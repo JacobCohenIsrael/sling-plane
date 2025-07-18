@@ -282,19 +282,7 @@ MonoBehaviour:
       Value: 4229992912440786867
   Entries:
   - SystemType:
-      AssemblyQualifiedName: Quantum.Core.CullingSystem2D, Quantum.Simulation, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    SystemName: 
-    StartDisabled: 0
-    Children: []
-  - SystemType:
       AssemblyQualifiedName: Quantum.Core.CullingSystem3D, Quantum.Simulation, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    SystemName: 
-    StartDisabled: 0
-    Children: []
-  - SystemType:
-      AssemblyQualifiedName: Quantum.Core.PhysicsSystem2D, Quantum.Simulation, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
     SystemName: 
     StartDisabled: 0
@@ -324,7 +312,13 @@ MonoBehaviour:
     StartDisabled: 0
     Children: []
   - SystemType:
-      AssemblyQualifiedName: Quantum.Systems.MovementSystem, Quantum.Simulation,
+      AssemblyQualifiedName: Quantum.Simulation.Systems.MovementSystem, Quantum.Simulation,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    SystemName: 
+    StartDisabled: 0
+    Children: []
+  - SystemType:
+      AssemblyQualifiedName: Quantum.Simulation.Systems.PlayersSpawnSystem, Quantum.Simulation,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     SystemName: 
     StartDisabled: 0
@@ -364,12 +358,12 @@ MonoBehaviour:
     Guid:
       Value: 1812255575176627103
   Restitution:
-    RawValue: 32768
-  RestitutionCombineFunction: 3
+    RawValue: 26214
+  RestitutionCombineFunction: 1
   FrictionStatic:
-    RawValue: 39322
+    RawValue: 19661
   FrictionDynamic:
-    RawValue: 39322
+    RawValue: 19661
   FrictionCombineFunction: 3
 --- !u!114 &5376880243973339706
 MonoBehaviour:

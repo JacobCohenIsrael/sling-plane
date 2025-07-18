@@ -52,10 +52,46 @@ namespace Quantum.Prototypes {
   [System.SerializableAttribute()]
   [Quantum.Prototypes.Prototype(typeof(Quantum.Input))]
   public unsafe partial class InputPrototype : StructPrototype {
-    [HideInInspector()]
-    public Int32 _empty_prototype_dummy_field_;
+    public FPVector3 Rotation;
+    public Button Sling;
     partial void MaterializeUser(Frame frame, ref Quantum.Input result, in PrototypeMaterializationContext context);
     public void Materialize(Frame frame, ref Quantum.Input result, in PrototypeMaterializationContext context = default) {
+        result.Rotation = this.Rotation;
+        result.Sling = this.Sling;
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.PlaneConfig))]
+  public unsafe partial class PlaneConfigPrototype : ComponentPrototype<Quantum.PlaneConfig> {
+    public AssetRef<MovementConfig> MovementConfig;
+    partial void MaterializeUser(Frame frame, ref Quantum.PlaneConfig result, in PrototypeMaterializationContext context);
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.PlaneConfig component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.PlaneConfig result, in PrototypeMaterializationContext context = default) {
+        result.MovementConfig = this.MovementConfig;
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.PlaneStats))]
+  public unsafe partial class PlaneStatsPrototype : ComponentPrototype<Quantum.PlaneStats> {
+    public QBoolean WasLaunched;
+    public FP ResponsiveModifier;
+    public FP SlingPower;
+    partial void MaterializeUser(Frame frame, ref Quantum.PlaneStats result, in PrototypeMaterializationContext context);
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.PlaneStats component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.PlaneStats result, in PrototypeMaterializationContext context = default) {
+        result.WasLaunched = this.WasLaunched;
+        result.ResponsiveModifier = this.ResponsiveModifier;
+        result.SlingPower = this.SlingPower;
         MaterializeUser(frame, ref result, in context);
     }
   }

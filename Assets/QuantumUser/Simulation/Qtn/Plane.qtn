@@ -1,0 +1,13 @@
+asset MovementConfig;
+
+component PlaneStats {
+    bool WasLaunched;
+    FP ResponsiveModifier;
+    FP SlingPower;
+}
+
+component PlaneConfig {
+    AssetRef<MovementConfig> MovementConfig;
+}
+
+signal OnPlaneCompleteStop(EntityRef entity, PlayerRef player);
