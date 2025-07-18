@@ -635,28 +635,36 @@ namespace Quantum {
   }
   [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct PlaneStats : Quantum.IComponent {
-    public const Int32 SIZE = 24;
+    public const Int32 SIZE = 56;
     public const Int32 ALIGNMENT = 8;
     [FieldOffset(0)]
     public QBoolean WasLaunched;
-    [FieldOffset(8)]
-    public FP ResponsiveModifier;
     [FieldOffset(16)]
+    public FP ResponsiveModifier;
+    [FieldOffset(24)]
     public FP SlingPower;
+    [FieldOffset(8)]
+    public FP DistancePassed;
+    [FieldOffset(32)]
+    public FPVector3 InitialPosition;
     public override readonly Int32 GetHashCode() {
       unchecked { 
         var hash = 6761;
         hash = hash * 31 + WasLaunched.GetHashCode();
         hash = hash * 31 + ResponsiveModifier.GetHashCode();
         hash = hash * 31 + SlingPower.GetHashCode();
+        hash = hash * 31 + DistancePassed.GetHashCode();
+        hash = hash * 31 + InitialPosition.GetHashCode();
         return hash;
       }
     }
     public static void Serialize(void* ptr, FrameSerializer serializer) {
         var p = (PlaneStats*)ptr;
         QBoolean.Serialize(&p->WasLaunched, serializer);
+        FP.Serialize(&p->DistancePassed, serializer);
         FP.Serialize(&p->ResponsiveModifier, serializer);
         FP.Serialize(&p->SlingPower, serializer);
+        FPVector3.Serialize(&p->InitialPosition, serializer);
     }
   }
   [StructLayout(LayoutKind.Explicit)]

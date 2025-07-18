@@ -21,4 +21,6 @@ MonoBehaviour:
   Responsivness:
     RawValue: 327680
   LiftPower:
-    RawValue: 8847360
+    RawValue: 8912896
+  ThrustPower:
+    RawValue: 3276800

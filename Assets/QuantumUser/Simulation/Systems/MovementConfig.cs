@@ -7,5 +7,6 @@ namespace Quantum
         public FP ImpulsePower;
         public FP Responsivness;
         public FP LiftPower;
+        public FP ThrustPower;
     }
 }

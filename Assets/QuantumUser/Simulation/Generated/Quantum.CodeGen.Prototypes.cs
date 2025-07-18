@@ -82,6 +82,8 @@ namespace Quantum.Prototypes {
     public QBoolean WasLaunched;
     public FP ResponsiveModifier;
     public FP SlingPower;
+    public FP DistancePassed;
+    public FPVector3 InitialPosition;
     partial void MaterializeUser(Frame frame, ref Quantum.PlaneStats result, in PrototypeMaterializationContext context);
     public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
         Quantum.PlaneStats component = default;
@@ -92,6 +94,8 @@ namespace Quantum.Prototypes {
         result.WasLaunched = this.WasLaunched;
         result.ResponsiveModifier = this.ResponsiveModifier;
         result.SlingPower = this.SlingPower;
+        result.DistancePassed = this.DistancePassed;
+        result.InitialPosition = this.InitialPosition;
         MaterializeUser(frame, ref result, in context);
     }
   }

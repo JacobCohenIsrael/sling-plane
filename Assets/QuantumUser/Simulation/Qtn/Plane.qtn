@@ -4,6 +4,8 @@ component PlaneStats {
     bool WasLaunched;
     FP ResponsiveModifier;
     FP SlingPower;
+    FP DistancePassed;
+    FPVector3 InitialPosition;
 }
 
 component PlaneConfig {

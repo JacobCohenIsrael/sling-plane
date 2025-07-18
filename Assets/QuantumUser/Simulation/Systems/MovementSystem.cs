@@ -52,11 +52,20 @@ namespace Quantum.Simulation.Systems
             filter.PhysicsBody->AddTorque(right * pitch * responseModifier);
             filter.PhysicsBody->AddTorque(forward * roll * responseModifier);
 
+            filter.PlaneStats->DistancePassed =
+                FPMath.Abs(filter.Transform->Position.Z - filter.PlaneStats->InitialPosition.Z);
+            
+            if (filter.PlaneStats->WasLaunched)
+            {
+                filter.PhysicsBody->AddForce(filter.Transform->Forward * movementConfig.ThrustPower);
+            }
+            
             if (filter.PlaneStats->WasLaunched && filter.PhysicsBody->Velocity.Z <= FP._0_05)
             {
                 f.Signals.OnPlaneCompleteStop(filter.Entity, filter.Link->Player);
                 filter.PlaneStats->WasLaunched = false;
                 filter.PlaneStats->SlingPower += FP._0_05;
+                filter.PhysicsBody->Velocity = FPVector3.Zero;
             }
         }
 
@@ -72,10 +81,13 @@ namespace Quantum.Simulation.Systems
         public void OnAdded(Frame f, EntityRef entity, PlaneStats* component)
         {
             var rigidbody = f.Unsafe.GetPointer<PhysicsBody3D>(entity);
+            var transform = f.Unsafe.GetPointer<Transform3D>(entity);
             var planeConfig = f.Get<PlaneConfig>(entity);
             var movementConfig = f.FindAsset<MovementConfig>(planeConfig.MovementConfig.Id);
             component->ResponsiveModifier = rigidbody->Mass / FP._10 * movementConfig.Responsivness;
             component->SlingPower = movementConfig.ImpulsePower;
+            component->InitialPosition = transform->Position;
+            component->DistancePassed = FP._0;
         }
     }
 }
