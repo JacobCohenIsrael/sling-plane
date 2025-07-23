@@ -635,18 +635,26 @@ namespace Quantum {
   }
   [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct PlaneStats : Quantum.IComponent {
-    public const Int32 SIZE = 56;
+    public const Int32 SIZE = 80;
     public const Int32 ALIGNMENT = 8;
-    [FieldOffset(0)]
+    [FieldOffset(4)]
     public QBoolean WasLaunched;
-    [FieldOffset(16)]
-    public FP ResponsiveModifier;
     [FieldOffset(24)]
+    public FP ResponsiveModifier;
+    [FieldOffset(32)]
     public FP SlingPower;
     [FieldOffset(8)]
     public FP DistancePassed;
-    [FieldOffset(32)]
+    [FieldOffset(40)]
+    public FP Thrust;
+    [FieldOffset(48)]
+    public FP ThrustDuration;
+    [FieldOffset(16)]
+    public FP MaxThrust;
+    [FieldOffset(56)]
     public FPVector3 InitialPosition;
+    [FieldOffset(0)]
+    public Int32 LaunchTick;
     public override readonly Int32 GetHashCode() {
       unchecked { 
         var hash = 6761;
@@ -654,16 +662,24 @@ namespace Quantum {
         hash = hash * 31 + ResponsiveModifier.GetHashCode();
         hash = hash * 31 + SlingPower.GetHashCode();
         hash = hash * 31 + DistancePassed.GetHashCode();
+        hash = hash * 31 + Thrust.GetHashCode();
+        hash = hash * 31 + ThrustDuration.GetHashCode();
+        hash = hash * 31 + MaxThrust.GetHashCode();
         hash = hash * 31 + InitialPosition.GetHashCode();
+        hash = hash * 31 + LaunchTick.GetHashCode();
         return hash;
       }
     }
     public static void Serialize(void* ptr, FrameSerializer serializer) {
         var p = (PlaneStats*)ptr;
+        serializer.Stream.Serialize(&p->LaunchTick);
         QBoolean.Serialize(&p->WasLaunched, serializer);
         FP.Serialize(&p->DistancePassed, serializer);
+        FP.Serialize(&p->MaxThrust, serializer);
         FP.Serialize(&p->ResponsiveModifier, serializer);
         FP.Serialize(&p->SlingPower, serializer);
+        FP.Serialize(&p->Thrust, serializer);
+        FP.Serialize(&p->ThrustDuration, serializer);
         FPVector3.Serialize(&p->InitialPosition, serializer);
     }
   }

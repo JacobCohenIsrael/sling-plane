@@ -14,8 +14,15 @@ namespace Quantum.Simulation.Systems
             {
                 Player = player
             });
+
+            var rampEntityRef = f.Create(runtimePlayer.Ramp);
+            f.Add(rampEntityRef, new PlayerLink
+            {
+                Player = player
+            });
             
             f.Unsafe.GetPointer<Transform3D>(entity)->Teleport(f, new FPVector3(player * 2, 1, 0));
+            f.Unsafe.GetPointer<Transform3D>(rampEntityRef)->Teleport(f, new FPVector3(player * 2, FP._0_20, FP._1_10));
         }
 
         public void OnPlaneCompleteStop(Frame f, EntityRef entity, PlayerRef player)

@@ -22,5 +22,19 @@ MonoBehaviour:
     RawValue: 327680
   LiftPower:
     RawValue: 8912896
-  ThrustPower:
-    RawValue: 3276800
+  MaxThrottlePower:
+    RawValue: 131072000
+  ThrustPowerIncrease:
+    RawValue: 655
+  InitialThrustPower:
+    RawValue: 0
+  MaxThrustDuration:
+    RawValue: 655360
+  InitialThrustDuration:
+    RawValue: 32768
+  ThrustDurationIncrease:
+    RawValue: 6554
+  GlidePower:
+    RawValue: 16384000
+  DragPower:
+    RawValue: 9830400

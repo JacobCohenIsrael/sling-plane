@@ -7,6 +7,13 @@ namespace Quantum
         public FP ImpulsePower;
         public FP Responsivness;
         public FP LiftPower;
-        public FP ThrustPower;
+        public FP MaxThrottlePower;
+        public FP ThrustPowerIncrease;
+        public FP InitialThrustPower;
+        public FP MaxThrustDuration;
+        public FP InitialThrustDuration;
+        public FP ThrustDurationIncrease;
+        public FP GlidePower;
+        public FP DragPower;
     }
 }

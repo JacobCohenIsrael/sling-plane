@@ -5,7 +5,11 @@ component PlaneStats {
     FP ResponsiveModifier;
     FP SlingPower;
     FP DistancePassed;
+    FP Thrust;
+    FP ThrustDuration;
+    FP MaxThrust;
     FPVector3 InitialPosition;
+    Int32 LaunchTick;
 }
 
 component PlaneConfig {

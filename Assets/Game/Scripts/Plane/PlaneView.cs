@@ -10,6 +10,8 @@ namespace Gamefather.Game.Plane
     {
         [SerializeField] private GameObject virtualCamera;
         [SerializeField] private TMP_Text distanceText;
+        [SerializeField] private Transform propeller;
+        [SerializeField] private AudioSource propSound;
         
         private PlayerRef playerRef = PlayerRef.None;
         
@@ -19,10 +21,10 @@ namespace Gamefather.Game.Plane
             var game = QuantumRunner.DefaultGame;
             var f = game.Frames.Predicted;
             var playerLink = f.Get<PlayerLink>(EntityRef);
+            playerRef = playerLink.Player;
             if (game.PlayerIsLocal(playerLink.Player))
             {
                 virtualCamera.SetActive(true);
-                playerRef = playerLink.Player;
             }
         }
 
@@ -42,8 +44,10 @@ namespace Gamefather.Game.Plane
                 return;
             }
 
+            propeller.Rotate(Vector3.right * (planeStats.Thrust.AsFloat * Time.deltaTime * 20000f));
+            propSound.volume = planeStats.WasLaunched ? planeStats.Thrust.AsFloat * 0.5f : 0f;
             var planeStatsDistancePassed = planeStats.DistancePassed;
-            distanceText.text = planeStatsDistancePassed.ToString("N0");
+            distanceText.text = $"{planeStatsDistancePassed.AsInt}m";
             distanceText.gameObject.SetActive(planeStatsDistancePassed > FP._0_05);
         }
     }
